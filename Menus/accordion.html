@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accordion</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .accordion {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            border-radius: 0;
+            font-size: 1.5rem;
+            text-align: left;
+            color: #444;
+            padding: 20px;
+            background-color: #eee;
+            transition: 0.5s;
+        }
+        .accordion::after {
+            content: '\002B';
+            float: right;
+            color: #777;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .active::after {
+            content: '\2012';
+        }
+        .active, .accordion:hover {
+          background-color: #ccc;
+        }
+        .panel {
+            max-height: 0;
+            padding: 0 20px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        p {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <button class="accordion">Section 3</button>
+    <div class="panel">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <script>
+        let accordion = document.querySelectorAll('.accordion');
+        for (let element of accordion) {
+            element.addEventListener('click', (event) => {
+                let panel = event.target;
+                let sign = window.getComputedStyle(panel, ':after');
+                let content = panel.nextSibling.nextSibling;
+                panel.classList.toggle('active');
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
