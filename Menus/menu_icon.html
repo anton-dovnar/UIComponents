@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Icon</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        #menu-icon {
+            cursor: pointer;
+        }
+        #menu-icon div {
+            position: relative;
+            width: 40px;
+            height: 5px;
+            margin: 5px 0;
+            background-color: #000;
+            transition: all .5s ease-in-out;
+        }
+        .close div:nth-child(2) {
+            opacity: 0;
+        }
+        .close div:nth-child(1) {
+            top: 10px;
+            transform: rotate(45deg);
+        }
+        .close div:nth-child(3) {
+            top: -10px;
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-icon">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+        let menuIcon = document.querySelector('#menu-icon');
+        menuIcon.addEventListener('click', (event) => {
+            menuIcon.classList.toggle('close');
+        });
+    </script>
+</body>
+</html>
