@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Full Page Tabs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        .tabs {
+            position: fixed;
+            display: flex;
+            width: 100%;
+        }
+        .tablink {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            font-size: 1.5rem;
+            padding: 25px;
+        }
+        .tablink:hover {
+            background-color: #ddd;
+        }
+        html, body, .container, .content {
+            height: 100%;
+        }
+        .tabcontent {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        .active {
+            color: #fff;
+        }
+        .active:nth-child(1) {
+            background-color: #f44336;
+        }
+        .active:nth-child(2) {
+            background-color: #04AA6D;
+        }
+        .active:nth-child(3) {
+            background-color: #2196F3;
+        }
+        .active:nth-child(4) {
+            background-color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tablink" onclick="openPage(event, 'Home')">Home</button>
+            <button class="tablink active" onclick="openPage(event, 'News')">News</button>
+            <button class="tablink" onclick="openPage(event, 'Contact')">Contact</button>
+            <button class="tablink" onclick="openPage(event, 'About')">About</button>
+        </div>
+
+        <div class="content">
+            <div id="Home" class="tabcontent">
+                <h3>Home</h3>
+                <p>Home is where the heart is..</p>
+            </div>
+
+            <div id="News" class="tabcontent active" style="display:flex;">
+                <h3>News</h3>
+                <p>Some news this fine day!</p>
+            </div>
+
+            <div id="Contact" class="tabcontent">
+                <h3>Contact</h3>
+                <p>Get in touch, or swing by for a cup of coffee.</p>
+            </div>
+
+            <div id="About" class="tabcontent">
+                <h3>About</h3>
+                <p>Who we are and what we do.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let openPage = (event, page) => {
+            let tabLinks = document.querySelectorAll('.tablink');
+            for (const link of tabLinks) {
+                link.classList.remove('active');
+            }
+
+            let tabContents = document.querySelectorAll('.tabcontent');
+            for (const content of tabContents) {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            }
+
+            let targetContent = document.querySelector(`#${page}`);
+            targetContent.classList.add('active');
+            targetContent.style.display = 'flex';
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
