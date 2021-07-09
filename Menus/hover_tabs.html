@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hover Tabs</title>
+    <style>
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+        .tab {
+            display: flex;
+            flex-direction: column;
+        }
+        .tablinks {
+            cursor: pointer;
+            border:none;
+            font-size: 1.5rem;
+            padding: 25px;
+        }
+        .tablinks:hover {
+            background-color: #ddd;
+        }
+        .tabcontent {
+            display: none;
+            width: 100%;
+            padding: 20px;
+        }
+        .active {
+            background-color: #ccc;
+        }
+        .active-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="tab">
+            <button class="tablinks active" onmouseover="openCity(event, 'London')">London</button>
+            <button class="tablinks" onmouseover="openCity(event, 'Paris')">Paris</button>
+            <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Tokyo</button>
+        </div>
+
+        <div id="London" class="tabcontent active-content">
+            <h3>London</h3>
+            <p>London is the capital city of England.</p>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+            <h3>Paris</h3>
+            <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+            <h3>Tokyo</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+    </div>
+
+    <script>
+        let openCity = (event, cityName) => {
+            let activeTab = document.querySelector('.active');
+            activeTab.classList.remove('active');
+
+            let activeContent = document.querySelector('.active-content');
+            activeContent.classList.remove('active-content');
+
+            let targetContent = document.querySelector(`#${cityName}`);
+            targetContent.classList.add('active-content');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
