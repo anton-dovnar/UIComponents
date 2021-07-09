@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Topnav</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        nav {
+            position: relative;
+            overflow: hidden;
+            background-color: #333;
+        }
+        a {
+            display: block;
+            float: left;
+            color: #fff;
+            text-decoration: none;
+            padding: 20px;
+        }
+        a:hover {
+            color: #000;
+            background-color: #ddd;
+        }
+        .nav-button {
+            position: absolute;
+            display: none;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            height: 100%;
+            padding: 15px 20px;
+        }
+        .nav-button div {
+            position: relative;
+            width: 30px;
+            height: 2px;
+            margin: 5px 0;
+            background-color: #fff;
+            transition: all .5s ease-in-out;
+        }
+        .close {
+            height: auto;
+        }
+        .close div:nth-child(1) {
+            top: 7px;
+            transform: rotate(45deg);
+        }
+        .close div:nth-child(2) {
+            opacity: 0;
+        }
+        .close div:nth-child(3) {
+            top: -7px;
+            transform: rotate(-45deg);
+        }
+        nav .active, .close {
+            color: #fff;
+            background-color: #04AA6D;
+        }
+        @media screen and (max-width: 767px) {
+            a {
+                width: 100%;
+            }
+            a:nth-child(n+2) {
+                display: none;
+            }
+            .nav-button {
+                display: block;
+            }
+            a.displayed {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home" class="active">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <div class="nav-button">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+    <script>
+        let navButton = document.querySelector('.nav-button');
+        navButton.addEventListener('click', (event) => {
+            navButton.classList.toggle('close');
+
+            let links = document.querySelectorAll('a');
+            for (let i = 1; i < links.length; i++) {
+                links[i].classList.toggle('displayed');
+            }
+        });
+    </script>
+</body>
+</html>
