@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            flex-basis: 25%;
+            background-color: #bbb;
+        }
+        .page-content {
+            flex-basis: 75%;
+            padding: 20px;
+            background: #ddd;
+        }
+        h1 {
+            padding: 10px 25px;
+        }
+        #mySearch {
+            outline: none;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 1.5rem;
+            padding: 10px 15px;
+        }
+        #mySearch:focus-visible {
+            border-color: #059862;
+        }
+        #myMenu {
+            margin: 0;
+            padding: 0;
+        }
+        #myMenu li {
+            cursor: pointer;
+            padding: 15px 25px;
+            list-style-type: none;
+        }
+        #myMenu li:hover {
+            background-color: #eee;
+        }
+        #myMenu li a {
+            color: #000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Menu</h1>
+            <input type="text" id="mySearch" onkeyup="myFunction(event)" placeholder="Search.." title="Type in a category">
+
+            <ul id="myMenu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+                <li><a href="#">PHP</a></li>
+                <li><a href="#">Python</a></li>
+                <li><a href="#">jQuery</a></li>
+                <li><a href="#">SQL</a></li>
+                <li><a href="#">Bootstrap</a></li>
+                <li><a href="#">Node.js</a></li>
+            </ul>
+        </div>
+
+        <div class="page-content">
+            <h2>Page Content</h2>
+            <p>Start to type for a specific category/link inside the search bar to "filter" the search options.</p>
+            <p>Some text..Some text..Some text..Some text..Some text..Some text..Some text..Some text..</p>
+            <p>Some other text..Some text..Some text..Some text..Some text..Some text..Some text..Some text..</p>
+            <p>Some text..</p>
+        </div>
+    </div>
+
+    <script>
+        let links = document.querySelectorAll('a');
+        let myFunction = (event) => {
+            let lookFor = event.target.value.toLowerCase();
+            for (const link of links) {
+                if (link.text.toLowerCase().indexOf(lookFor) > -1) {
+                    link.parentNode.style.display = '';
+                } else {
+                    link.parentNode.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
