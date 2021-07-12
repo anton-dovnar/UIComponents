@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 1rem;
+        }
+        select {
+            margin: 10px 0;
+        }
+        select, input {
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            border: 1px solid #eee;
+            border-radius: 0;
+            padding: 10px 0;
+            margin: 10px 0;
+            background-color: #e3e3
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Cascading dropdown:</legend>
+            <label for="subject">Subjects:</label>
+            <select name="subject" id="subject">
+                <option value="" selected="selected">Select subject</option>
+            </select>
+
+            <label for="topic">Topics:</label>
+            <select name="topic" id="topic">
+                <option value="" selected="selected">Please select subject first</option>
+            </select>
+
+            <label for="chapter">Chapters:</label>
+            <select name="chapter" id="chapter">
+                <option value="" selected="selected">Please select topic first</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script>
+        window.onload = () => {
+            const subjectObject = {
+                "Front-end": {
+                    "HTML": ["Links", "Images", "Tables", "Lists"],
+                    "CSS": ["Borders", "Margins", "Background", "Floart"],
+                    "JavaScript": ["Variables", "Operators", "Functions", "Conditions"]
+                },
+                "Back-end": {
+                    "Python": ["Variables", "Strings", "Arrays"],
+                    "SQL": ["SELECT", "UPDATE", "DELETE"]
+                }
+            };
+
+            const subjectSel = document.querySelector("#subject");
+            const topicSel = document.querySelector("#topic");
+            const chapterSel = document.querySelector("#chapter");
+
+            for (const key in subjectObject) {
+                subjectSel.options[subjectSel.options.length] = new Option(key, key);
+            }
+
+            subjectSel.onchange = function() {
+                topicSel.length = 1;
+                chapterSel.length = 1;
+                for (const key in subjectObject[this.value]) {
+                    topicSel.options[topicSel.options.length] = new Option(key, key);
+                }
+            }
+
+            topicSel.onchange = function() {
+                chapterSel.length = 1;
+                const topic = subjectObject[subjectSel.value][this.value];
+                for (const value of topic) {
+                    chapterSel.options[chapterSel.options.length] = new Option(value, value);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
